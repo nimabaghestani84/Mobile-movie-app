@@ -1,19 +1,3 @@
-
-// export const fetchMovie = async ({ query }: { query: string }) => {
-//   const endpoint = "discover/movie?sort_by=popularity.desc";
-
-//   const response = await fetch(endpoint, {
-//     method: "GET",
-//     headers: TMDB_CONFIG.headers,
-//   });
-//   if (!response.ok) {
-//     throw new Error("Faild to fetch movie", response.statusText);
-//   }
-//   const data = await response.json();
-//   return data.result;
-// };
-
-// discover/movie
 export const TMDB_CONFIG = {
   BASE_URL: "https://api.themoviedb.org/3",
   API_KEY: process.env.EXPO_PUBLIC_MOVIE_API_KEY,
