@@ -1,5 +1,5 @@
 import { View, Text, Image, FlatList, ActivityIndicator } from "react-native";
-import React, { lazy, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { images } from "@/constants/images";
 import MovieCard from "@/Components/MovieCard";
 import { useRouter } from "expo-router";
@@ -17,7 +17,21 @@ const search = () => {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
+    refetch:loadMovies,
+    reset,
   } = useFetch(() => fetchMovies({ query: searchQuery }),false);
+
+  useEffect(() => {
+    const func=async()=>{
+
+      if(searchQuery.trim()){
+        await loadMovies();
+      }else{
+        reset()
+      }
+    }
+    func()
+  }, [searchQuery]);
   return (
     <View className="flex-1 bg-primary">
       <Image
@@ -44,7 +58,7 @@ const search = () => {
               <Image source={icons.logo} className="w-12 h-10" />
             </View>
             <View className="my-5">
-              <SearchBar placeholder="Search movies ..." value={searchQuery} onChangeText={()=>setSearchQuery(text)}/>
+              <SearchBar placeholder="Search movies ..." value={searchQuery} onChangeText={(text:string)=>setSearchQuery(text)}/>
             </View>
             {moviesLoading && (
               <ActivityIndicator
