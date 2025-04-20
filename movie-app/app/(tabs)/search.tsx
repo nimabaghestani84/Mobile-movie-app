@@ -7,6 +7,13 @@ import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
 
 const search = () => {
+  const router = useRouter();
+
+  const {
+    data: movies,
+    loading: moviesLoading,
+    error: moviesError,
+  } = useFetch(() => fetchMovies({ query: "" }));
   return (
     <View className="flex-1 bg-primary">
       <Image
