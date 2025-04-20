@@ -9,28 +9,26 @@ import { icons } from "@/constants/icons";
 import SearchBar from "@/Components/SearchBar";
 
 const search = () => {
-
-  const [searchQuery, setSearchQuery] = useState('');
-  
+  const [searchQuery, setSearchQuery] = useState("");
 
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
-    refetch:loadMovies,
+    refetch: loadMovies,
     reset,
-  } = useFetch(() => fetchMovies({ query: searchQuery }),false);
+  } = useFetch(() => fetchMovies({ query: searchQuery }), false);
 
   useEffect(() => {
-    const func=async()=>{
-
-      if(searchQuery.trim()){
+    const timeoutId = setTimeout(async () => {
+      if (searchQuery.trim()) {
         await loadMovies();
-      }else{
-        reset()
+      } else {
+        reset();
       }
-    }
-    func()
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
   }, [searchQuery]);
   return (
     <View className="flex-1 bg-primary">
@@ -58,7 +56,11 @@ const search = () => {
               <Image source={icons.logo} className="w-12 h-10" />
             </View>
             <View className="my-5">
-              <SearchBar placeholder="Search movies ..." value={searchQuery} onChangeText={(text:string)=>setSearchQuery(text)}/>
+              <SearchBar
+                placeholder="Search movies ..."
+                value={searchQuery}
+                onChangeText={(text: string) => setSearchQuery(text)}
+              />
             </View>
             {moviesLoading && (
               <ActivityIndicator
@@ -79,6 +81,15 @@ const search = () => {
               </Text>
             )}
           </>
+        }
+        ListEmptyComponent={
+          !moviesLoading && !moviesError ? (
+            <View className="mt-10 px-5">
+              <Text className="text-center text-gray-500">
+                {searchQuery.trim() ? "No movies found" : "Search foe a movie"}
+              </Text>
+            </View>
+          ) : null
         }
       />
     </View>
