@@ -44,7 +44,7 @@ const search = () => {
               <Image source={icons.logo} className="w-12 h-10" />
             </View>
             <View className="my-5">
-              <SearchBar placeholder="Search movies ..." />
+              <SearchBar placeholder="Search movies ..." value={searchQuery} onChangeText={()=>setSearchQuery(text)}/>
             </View>
             {moviesLoading && (
               <ActivityIndicator
