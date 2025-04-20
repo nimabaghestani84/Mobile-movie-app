@@ -1,19 +1,23 @@
-import { View, Text, Image, FlatList } from "react-native";
-import React from "react";
+import { View, Text, Image, FlatList, ActivityIndicator } from "react-native";
+import React, { lazy, useState } from "react";
 import { images } from "@/constants/images";
 import MovieCard from "@/Components/MovieCard";
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
+import { icons } from "@/constants/icons";
+import SearchBar from "@/Components/SearchBar";
 
 const search = () => {
-  const router = useRouter();
+
+  const [searchQuery, setSearchQuery] = useState('');
+  
 
   const {
     data: movies,
     loading: moviesLoading,
     error: moviesError,
-  } = useFetch(() => fetchMovies({ query: "" }));
+  } = useFetch(() => fetchMovies({ query: searchQuery }),false);
   return (
     <View className="flex-1 bg-primary">
       <Image
@@ -34,6 +38,34 @@ const search = () => {
           marginVertical: 16,
         }}
         contentContainerStyle={{ paddingBottom: 100 }}
+        ListHeaderComponent={
+          <>
+            <View className="w-full flex-row justify-center mt-20 items-center">
+              <Image source={icons.logo} className="w-12 h-10" />
+            </View>
+            <View className="my-5">
+              <SearchBar placeholder="Search movies ..." />
+            </View>
+            {moviesLoading && (
+              <ActivityIndicator
+                size="large"
+                color="#0000ff"
+                className="py-3"
+              />
+            )}
+            {moviesError && (
+              <Text className="text-red-500 px-5 my-3">
+                Error:{moviesError.message}
+              </Text>
+            )}
+            {!moviesLoading && !moviesError && searchQuery.trim() && (
+              <Text className="text-xl text-white font-bold">
+                Search result for{" "}
+                <Text className="text-accent">{searchQuery}</Text>
+              </Text>
+            )}
+          </>
+        }
       />
     </View>
   );
