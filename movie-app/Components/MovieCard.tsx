@@ -13,7 +13,7 @@ const MovieCard = ({
   const imageUrl = poster_path
     ? `https://image.tmdb.org/t/p/w500${poster_path}`
     : "https://placehold.co/600x400/1a1a1a/FFFFFF.png";
-  console.log(imageUrl);
+  // console.log(imageUrl);
   return (
     <Link href={`/movies/${id}`} asChild>
       <TouchableOpacity className="w-[30%]">
@@ -25,14 +25,17 @@ const MovieCard = ({
           resizeMode="cover"
         /> */}
         <Image
-  source={{
-    uri: `${poster_path ? 'https://image.tmdb.org/t/p/w500' + poster_path : 'https://placehold.co/600x400/1a1a1a/FFFFFF.png'}`
-  }}
-  style={{ width: 200, height: 300, borderRadius: 12 }}
-  resizeMode="cover"
-  onError={(e) => console.log('IMAGE LOAD ERROR:', e.nativeEvent)}
-/>
-
+          source={{
+            uri: `${
+              poster_path
+                ? "https://image.tmdb.org/t/p/w500" + poster_path
+                : "https://placehold.co/600x400/1a1a1a/FFFFFF.png"
+            }`,
+          }}
+          style={{ width: 200, height: 300, borderRadius: 12 }}
+          resizeMode="cover"
+          // onError={(e) => console.log("IMAGE LOAD ERROR:", e.nativeEvent)}
+        />
 
         <Text className="text-sm font-bold text-white mt-2" numberOfLines={1}>
           {title}
