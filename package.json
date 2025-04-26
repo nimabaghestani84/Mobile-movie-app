@@ -1,8 +1,11 @@
 {
   "dependencies": {
+    "expo": "^52.0.46",
     "nativewind": "^4.1.23",
+    "react-native-appwrite": "^0.7.3",
     "react-native-reanimated": "^3.17.1",
     "react-native-safe-area-context": "^5.3.0",
+    "react-native-url-polyfill": "^2.0.0",
     "tailwindcss": "^3.4.17"
   }
 }
