@@ -2,7 +2,6 @@ import { View, Text, Image, FlatList, ActivityIndicator } from "react-native";
 import React, { lazy, useEffect, useState } from "react";
 import { images } from "@/constants/images";
 import MovieCard from "@/Components/MovieCard";
-import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
 import { icons } from "@/constants/icons";
