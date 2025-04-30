@@ -22,6 +22,7 @@ const TrendingCard = ({
           <Image source={images.rankingGradient} className="size-14" resizeMode="cover"/>
           </MaskedView>
         </View>
+        <Text className="text-sm font-bold mt-2 text-light-200" numberOfLines={2}></Text>
       </TouchableOpacity>
     </Link>
   );
