@@ -11,7 +11,7 @@ const MovieDetails = () => {
     <View className="bg-primary flex-1">
       <ScrollView contentContainerStyle={{paddingBottom:80}}>
         <View>
-          <Image source={{uri:`https://image.tmbd.org/t/p/w500${movie?.poster_path}`}} />
+          <Image className="w-full h-[550px]" resizeMode="stretch" source={{uri:`https://image.tmbd.org/t/p/w500${movie?.poster_path}`}} />
         </View>
       </ScrollView>
     </View>
