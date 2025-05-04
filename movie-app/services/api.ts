@@ -29,3 +29,8 @@ export const fetchMovies = async ({
   return data.results;
 };
 
+export const fetchMovieDetails = async (
+  movieId: string
+): Promise<MovieDetails> => {
+ 
+};
