@@ -5,6 +5,10 @@ import useFetch from "@/services/useFetch";
 import { fetchMovieDetails } from "@/services/api";
 import { icons } from "@/constants/icons";
 
+const MovieInfo = ({ label, value }: MovieInfoProps) => (
+  
+);
+
 const MovieDetails = () => {
   const {id}=useLocalSearchParams();
   const {data:movie,loading}=useFetch(()=>fetchMovieDetails(id as string))
