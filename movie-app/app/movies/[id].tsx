@@ -5,6 +5,11 @@ import useFetch from "@/services/useFetch";
 import { fetchMovieDetails } from "@/services/api";
 import { icons } from "@/constants/icons";
 
+interface MovieInfoProps {
+  label: string;
+  value?: string | number | null;
+}
+
 const MovieInfo = ({ label, value }: MovieInfoProps) => (
   
 );
