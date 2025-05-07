@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
 import useFetch from "@/services/useFetch";
