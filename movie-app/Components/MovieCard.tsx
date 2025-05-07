@@ -10,31 +10,17 @@ const MovieCard = ({
   vote_average,
   release_date,
 }: Movie) => {
-  const imageUrl = poster_path
-    ? `https://image.tmdb.org/t/p/w500${poster_path}`
-    : "https://placehold.co/600x400/1a1a1a/FFFFFF.png";
-  // console.log(imageUrl);
   return (
     <Link href={`/movies/${id}`} asChild>
       <TouchableOpacity className="w-[30%]">
-        {/* <Image
+        <Image
           source={{
-            uri: imageUrl,
+            uri: poster_path
+              ? `https://image.tmdb.org/t/p/w500${poster_path}`
+              : "https://placehold.co/600x400/1a1a1a/FFFFFF.png",
           }}
           className="w-full h-52 rounded-lg"
           resizeMode="cover"
-        /> */}
-        <Image
-          source={{
-            uri: `${
-              poster_path
-                ? "https://image.tmdb.org/t/p/w500" + poster_path
-                : "https://placehold.co/600x400/1a1a1a/FFFFFF.png"
-            }`,
-          }}
-          style={{ width: 200, height: 300, borderRadius: 12 }}
-          resizeMode="cover"
-          // onError={(e) => console.log("IMAGE LOAD ERROR:", e.nativeEvent)}
         />
 
         <Text className="text-sm font-bold text-white mt-2" numberOfLines={1}>
